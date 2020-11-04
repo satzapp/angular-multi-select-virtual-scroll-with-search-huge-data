@@ -1,0 +1,14 @@
+<mat-form-field>
+	<mat-select [formControl]="multiSelectControl" multiple [value]="selected" (openedChange)="openChange($event)"
+		placeholder="{{selected.length > 0 ? selectedTexts : 'Select'}}">
+		<mat-select-trigger>
+			{{selectedTexts}}
+		</mat-select-trigger>
+		<cdk-virtual-scroll-viewport itemSize="50" [style.height.px]=5*48>
+			<button (click)="selectAll()">Select All</button>
+			<button (click)="clear()">Clear</button>
+			<mat-option *cdkVirtualFor="let topping of toppingList" [value]="topping"
+				(onSelectionChange)="onSelectionChange($event)">{{topping.viewValue}}</mat-option>
+		</cdk-virtual-scroll-viewport>
+	</mat-select>
+</mat-form-field>
